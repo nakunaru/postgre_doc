@@ -1,0 +1,8 @@
+\pset pager off
+\conninfo
+select current_user;
+\l
+\timing on
+\set PROMPT1 %/:%n%x' ='%#' '
+
+
