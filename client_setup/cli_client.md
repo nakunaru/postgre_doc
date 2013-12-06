@@ -47,6 +47,9 @@ psqlコマンドを起動すると、$HOME/.psqlrc が読み込まれる。
         # %x    トランザクション無いなら*、外なら空白を表示
         # %#    一般ユーザーは>、管理ユーザーなら#を表示
 
+サンプル  
+[サンプルの.psql](https://github.com/nakunaru/postgre_doc/blob/master/client_setup/.psqlrc)  
+
 
 ### その他のメタコマンド
 
