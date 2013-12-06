@@ -4,7 +4,7 @@ OS: Ubuntu 12.04 on CloudCore
 PostgreSQL: 9.2  
 
 
-## debパッケージリポジトリの追加
+### debパッケージリポジトリの追加
 
 参考：http://siguniang.wordpress.com/2013/02/02/install-postgresql-9-2-on-ubuntu-12-04/  
 
