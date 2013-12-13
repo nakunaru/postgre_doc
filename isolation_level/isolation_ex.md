@@ -236,4 +236,7 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
 　「同時更新のため直列化アクセスができませんでした」  
 　エラーを出力し、更新を失敗させる。  
 
+参考：http://www.postgresql.jp/document/9.3/html/transaction-iso.html  
+
+
 
