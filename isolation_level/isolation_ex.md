@@ -21,6 +21,7 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
 
 ### サンプルテーブル用意
 
+    ```
     DROP TABLE IF EXISTS isotab;
     
     CREATE TABLE isotab
@@ -36,13 +37,13 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
     INSERT INTO isotab VALUES(70, 'ggg');
     INSERT INTO isotab VALUES(80, 'hhh');
     INSERT INTO isotab VALUES(90, 'jjj');
-
+    ```
 
 ### READ COMMITED + UPDATE
 
 1. session A:  
 
-
+    ```
     BEGIN;
     SELECT * FROM isotab;
     
@@ -57,11 +58,11 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
     70 | ggg
     80 | hhh
     90 | jjj
-
+    ```
 
 2. session B:  
 
-
+    ```
     BEGIN;
     SELECT * FROM isotab;
     
@@ -91,11 +92,11 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
      80 | hhh
      90 | jjj
      50 | EEE   <- 変更したセッションは変更後の値を取得
-
+    ```
 
 3. session A:  
 
-
+    ```
     SELECT * FROM isotab;
     
      no | name
@@ -109,17 +110,17 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
      70 | ggg
      80 | hhh
      90 | jjj
-
+    ```
 
 4. session B:  
 
-
+    ```
     COMMIT;
-
+    ```
 
 5. session A:  
 
-
+    ```
     SELECT * FROM isotab;
     
      no | name
@@ -135,6 +136,7 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
      50 | EEE   <- コミットされればREAD COMMITEDのセッションから変更後のデータが取得できる
     
     COMMIT;
+    ```
 
 + READ COMMITEDはロックを取らない
 
@@ -143,16 +145,16 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
 
 1. session A:  
 
-
+    ```
     BEGIN;
     SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
     
     SELECT * FROM isotab;
-
+    ```
 
 2. session B:  
 
-
+    ```
     BEGIN;
     UPDATE isotab SET name = 'EEE' WHERE no = 50;
     SELECT * FROM isotab;
@@ -168,11 +170,11 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
      80 | hhh
      90 | jjj
      50 | EEE   <- 変更後の値
-
+    ```
 
 3. session A:  
 
-
+    ```
     SELECT * FROM isotab;
 
      no | name
@@ -186,17 +188,17 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
      70 | ggg
      80 | hhh
      90 | jjj
-
+    ```
 
 4. session B:  
 
-
+    ```
     COMMIT;
-
+    ```
 
 5. session A:  
 
-
+    ```
     SELECT * FROM isotab;
     
      no | name
@@ -226,4 +228,5 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
      80 | hhh
      90 | jjj
      50 | EEE   <- 変更後の値
+    ```
 
