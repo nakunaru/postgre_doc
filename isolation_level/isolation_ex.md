@@ -44,9 +44,9 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
 
     BEGIN;
     SELECT * FROM isotab;
-
+    
     no | name
--   ---+------
+    ---+------
     10 | aaa
     20 | bbb
     30 | ccc
@@ -56,6 +56,7 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
     70 | ggg
     80 | hhh
     90 | jjj
+
 
 2. session B:  
 
@@ -76,7 +77,7 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
     
     UPDATE isotab SET name = 'EEE' WHERE no = 50;
     SELECT * FROM isotab;
-
+    
      no | name
     ----+------
      10 | aaa
@@ -139,7 +140,7 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
 
     BEGIN;
     SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
-
+    
     SELECT * FROM isotab;
 
 
@@ -148,7 +149,7 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
     BEGIN;
     UPDATE isotab SET name = 'EEE' WHERE no = 50;
     SELECT * FROM isotab;
-
+    
      no | name
     ----+------
      10 | aaa
@@ -160,6 +161,7 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
      80 | hhh
      90 | jjj
      50 | EEE   <- •ÏXŒã‚Ì’l
+
 
 3. session A:  
 
@@ -177,6 +179,7 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
      80 | hhh
      90 | jjj
 
+
 4. session B:  
 
     COMMIT;
@@ -185,7 +188,7 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
 5. session A:  
 
     SELECT * FROM isotab;
-
+    
      no | name
     ----+------
      10 | aaa
@@ -197,11 +200,11 @@ http://www.postgresql.jp/document/9.3/html/sql-set-transaction.html
      70 | ggg
      80 | hhh
      90 | jjj
-
+    
     COMMIT;
-
+    
     SELECT * FROM isotab;
-
+    
      no | name
     ----+------
      10 | aaa
