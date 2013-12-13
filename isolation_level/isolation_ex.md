@@ -7,8 +7,10 @@
 |:-------------------|:---------------|:-------------------|:-----------------|
 | READ UNCOMMITED    | なし ※1       | あり               | あり             |
 | READ COMMITED      | なし           | あり               | あり             |
-| REPEATABLE READ    | なし           | なし               | あり             |
-| SERIALIZABLE       | なし           | なし               | なし             |
+| REPEATABLE READ    | 安全           | 安全               | あり             |
+| SERIALIZABLE       | 安全           | 安全               | 安全             |
 
-※READ UNCOMMITEDは実質READ COMMITEDと同じ動作となる
+※1 READ UNCOMMITEDは実質READ COMMITEDと同じ動作となる
+
+
 
