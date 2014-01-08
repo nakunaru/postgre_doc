@@ -19,13 +19,13 @@ PostgreSQLのインストール時にpostgresql-contribもインストールを�
   
 ソースからインストールしている場合は、以下の手順でpg_stat_statementsもビルドされているか確認できる。  
 
-    ```
-    $ pg_config --libdir
-    /usr/lib        ←ライブラリの格納場所の確認
+```
+$ pg_config --libdir
+/usr/lib        ←ライブラリの格納場所の確認
 
-    $ find /usr/lib -name pg_stat_statements.so
-    /usr/lib/postgresql/9.2/lib/pg_stat_statements.so   ←これが見つかればビルド済み
-    ```
+$ find /usr/lib -name pg_stat_statements.so
+/usr/lib/postgresql/9.2/lib/pg_stat_statements.so   ←これが見つかればビルド済み
+```
 
 
 ### 2 postgres.confの設定
@@ -33,21 +33,21 @@ PostgreSQLのインストール時にpostgresql-contribもインストールを�
 pg_stat_statementsを使用するためには、事前にpostgres.confのshared_preload_librariesに
 pg_stat_statementsを追加しておく必要がある。
 
-    ```
-    postgres.conf
-    ----------------
-    shared_preload_libraries = 'pg_stat_statements'
+```
+postgres.conf
+----------------
+shared_preload_libraries = 'pg_stat_statements'
 
-    ```
+```
 
 ### 3 pg_stat_statements用の追加パラメータの設定
 
 必要に応じて、pt_stat_statement用の追加パラメータをpostgres.confへ追加する。
 
-    ```
-    custom_variable_classes = 'pg_stat_statements'  # PstgreSQL標準ではないパラメータを追加する設定
-    pg_stat_statements.max = 10000
-    pg_stat_statements.track = all
+```
+custom_variable_classes = 'pg_stat_statements'  # PstgreSQL標準ではないパラメータを追加する設定
+pg_stat_statements.max = 10000
+pg_stat_statements.track = all
     ```
 
 参考：  
@@ -65,8 +65,8 @@ Ubuntuの場合は/usr/share/postgresql/9.2/extension/の配下に以下の2つ�
 + pg_stat_statements--1.0--1.1.sql
 + pg_stat_statements--1.1.sql
 
-    ```
-    psql -f /usr/share/postgresql/9.2/extension/pg_stat_statements--1.1.sql -d DB名 -U ユーザ名 -h ホスト名
-    ```
+```
+psql -f /usr/share/postgresql/9.2/extension/pg_stat_statements--1.1.sql -d DB名 -U ユーザ名 -h ホスト名
+```
 
 
