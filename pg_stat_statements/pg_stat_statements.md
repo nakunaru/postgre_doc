@@ -40,6 +40,7 @@ shared_preload_libraries = 'pg_stat_statements'
 
 ```
 
+
 ### 3 pg_stat_statements用の追加パラメータの設定
 
 必要に応じて、pt_stat_statement用の追加パラメータをpostgres.confへ追加する。
@@ -48,7 +49,7 @@ shared_preload_libraries = 'pg_stat_statements'
 custom_variable_classes = 'pg_stat_statements'  # PstgreSQL標準ではないパラメータを追加する設定
 pg_stat_statements.max = 10000
 pg_stat_statements.track = all
-    ```
+```
 
 参考：  
 http://www.postgresql.jp/document/9.3/html/pgstatstatements.html  
